@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataExtractor", "DataExtractor.csproj", "{D2878A99-D45C-42CB-937B-3D04477DD1F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2878A99-D45C-42CB-937B-3D04477DD1F3}.Debug|x64.ActiveCfg = Debug|x64
+		{D2878A99-D45C-42CB-937B-3D04477DD1F3}.Debug|x64.Build.0 = Debug|x64
+		{D2878A99-D45C-42CB-937B-3D04477DD1F3}.Release|x64.ActiveCfg = Release|x64
+		{D2878A99-D45C-42CB-937B-3D04477DD1F3}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA9C9734-9670-44EB-BF1B-29344F708B13}
+	EndGlobalSection
+EndGlobal

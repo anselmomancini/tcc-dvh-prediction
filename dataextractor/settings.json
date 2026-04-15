@@ -1,0 +1,35 @@
+{
+  "DthInBins": [
+    -5,
+    0,
+    2.5,
+    5,
+    7.5,
+    10,
+    12.5,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    50,
+    60,
+    70,
+    85,
+    100,
+    125,
+    175
+  ],
+  "DthOutBins": [
+    2,
+    4,
+    6,
+    8,
+    12,
+    16
+  ],
+  "PointsInsideOarAxialResMm": 2,
+  "DvhResolution": 1,
+  "DvhMaxDose": 105
+}
