@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use or reference this repository, please cite it as follows."
+title: "Aplicação de machine learning explicável para predição de dose em órgãos adjacentes na radioterapia pulmonar"
+authors:
+  - family-names: "Mancini"
+    given-names: "Anselmo"
+repository-code: "https://github.com/anselmomancini/tcc-dvh-prediction"
+abstract: "Repository containing the code developed for a final project focused on explainable machine learning for DVH prediction in adjacent organs in lung radiotherapy."
+keywords:
+  - radiotherapy
+  - DVH
+  - XGBoost
+  - SHAP
+  - DTH
+  - SBRT
+  - VMAT
