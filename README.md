@@ -4,8 +4,8 @@ Este repositório reúne os códigos desenvolvidos no Trabalho de Conclusão de 
 
 O projeto foi estruturado em três módulos complementares:
 
-- `doseprofiles`: extração de perfis médios de dose utilizados na definição qualitativa dos intervalos dos DTHs;
-- `dataextractor`: extração automática de variáveis geométricas e dosimétricas a partir do sistema de planejamento radioterápico;
+- `doseprofiles`: extração, a partir do sistema de planejamento Eclipse, de perfis de dose utilizados na definição qualitativa dos intervalos dos DTHs;
+- `dataextractor`: extração, a partir do sistema de planejamento Eclipse, de variáveis geométricas e dosimétricas dos casos selecionados;
 - `dvhprediction`: pipeline de modelagem preditiva em Python com análise fatorial, XGBoost e SHAP.
 
 ## Objetivo
@@ -59,12 +59,12 @@ Pipeline em Python para:
 
 O pipeline foi desenvolvido para dados de pacientes tratados com SBRT pulmonar com técnica VMAT.
 
-As variáveis explicativas incluem descritores baseados em *Distance-to-Target Histogram* (DTH), subdividido em duas componentes:
+As variáveis explicativas iniciais incluem descritores baseados em *Distance-to-Target Histogram* (DTH), subdividido em duas componentes:
 
 - **DTH-In**: fração do órgão presente nos mesmos planos axiais do alvo;
 - **DTH-Out**: fração do órgão presente em planos axiais que não contêm o alvo.
 
-Após a extração, as variáveis DTH foram submetidas à redução de dimensionalidade por análise fatorial. Os constructos obtidos foram combinados ao volume do alvo e à variável `dose_perc`, compondo a entrada do modelo de regressão com XGBoost. A interpretabilidade das estimativas foi analisada com SHAP.
+As variáveis DTH foram submetidas à redução de dimensionalidade por análise fatorial. Os constructos obtidos foram combinados ao volume do alvo e à variável `dose_perc`, compondo a entrada do modelo de regressão com XGBoost. A interpretabilidade das estimativas foi analisada com SHAP.
 
 ## Base de dados e escopo do estudo
 
@@ -155,15 +155,14 @@ O pipeline em Python foi desenvolvido para gerar, entre outros artefatos:
 
 ## Uso e citação
 
-Este repositório é disponibilizado publicamente para fins acadêmicos, apresentação metodológica e citação.
+Este repositório é disponibilizado publicamente para fins acadêmicos e apresentação metodológica.
 
-Se você utilizar ou referenciar este material, utilize as informações disponíveis em `CITATION.cff`.
+Se você for referenciar este material, utilize as informações disponíveis em `CITATION.cff`.
 
 Nenhuma licença open source está sendo concedida neste momento para reutilização, modificação ou redistribuição do código.
 
 ## Observações
 
-- Este repositório tem finalidade acadêmica e de demonstração metodológica.
 - Os dados disponibilizados são limitados ao necessário para ilustrar o funcionamento do pipeline de predição de dvh.
 
 ## Autor
