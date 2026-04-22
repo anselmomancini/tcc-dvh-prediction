@@ -18,8 +18,6 @@ O pipeline inclui:
 - visualização de DVH real vs. predita
 - interpretação do modelo com SHAP
 
-**Observação importante:** embora o código esteja estruturado para receber outros órgãos, no estado atual do projeto **apenas os dados referentes à árvore brônquica estão publicamente disponíveis**.
-
 ---
 
 # Estrutura do Pipeline
@@ -54,10 +52,9 @@ O script assume a seguinte organização:
 ```text
 project/
 ├── inputs/
-│   ├── arvore_bronquica_dths.csv
-│   └── arvore_bronquica_dvhs.csv
+│   ├── <orgao>_dths.csv
+│   └── <orgao>_dvhs.csv
 └── outputs/
-    └── arvore_bronquica/
 ```
 
 O diretório de saída é criado automaticamente pelo script.
@@ -70,7 +67,7 @@ O diretório de saída é criado automaticamente pelo script.
 
 Arquivo esperado:
 
-`inputs/arvore_bronquica_dths.csv`
+`inputs/<orgao>_dths.csv`
 
 Contém:
 
@@ -87,7 +84,7 @@ As colunas `dthIn_*` e `dthOut_*` são filtradas para remover variáveis com var
 
 Arquivo esperado:
 
-`inputs/arvore_bronquica_dvhs.csv`
+`inputs/<orgao>_dvhs.csv`
 
 Contém:
 
@@ -263,15 +260,15 @@ As faixas de dose definidas no pipeline são:
 
 # Artefatos salvos
 
-Após o treinamento, os seguintes objetos são armazenados em `outputs/arvore_bronquica/` com timestamp:
+Após o treinamento, os seguintes objetos são armazenados em `outputs/<orgao>/` com timestamp:
 
-- `arvore_bronquica_scaler_*.joblib`
-- `arvore_bronquica_xgb_*.joblib`
-- `arvore_bronquica_fa_in_*.joblib`
-- `arvore_bronquica_fa_out_*.joblib`
-- `arvore_bronquica_metricas_globais_*.csv`
-- `arvore_bronquica_metricas_faixa_teste_*.csv`
-- `arvore_bronquica_metadata_*.json`
+- `<orgao>_scaler_*.joblib`
+- `<orgao>_xgb_*.joblib`
+- `<orgao>_fa_in_*.joblib`
+- `<orgao>_fa_out_*.joblib`
+- `<orgao>_metricas_globais_*.csv`
+- `<orgao>_metricas_faixa_teste_*.csv`
+- `<orgao>_metadata_*.json`
 
 O arquivo de metadados registra, entre outros itens:
 
@@ -302,7 +299,7 @@ Volume (%)
 
 No exemplo do código, a função é aplicada ao:
 
-- `caso_id = 119`
+- `caso_id = 173`
 
 ---
 
@@ -313,14 +310,14 @@ O modelo é interpretado usando SHAP.
 A função `shap_pair_plot()` gera dois painéis:
 
 1. **Distribuição das explicativas**  
-   Mostra a distribuição das variáveis para observações com a mesma dose, incluindo o ponto do caso analisado e a coloração pelos valores SHAP.
+   Mostra a distribuição das variáveis nos dados de treino para observações com a mesma dose, incluindo a coloração pelos valores SHAP e o círculo preto do caso analisado.
 
-2. **Waterfall plot**  
+3. **Waterfall plot**  
    Mostra a contribuição individual de cada variável para a predição do modelo.
 
 No exemplo do código, a explicação é gerada para:
 
-- `caso_id = 119`
+- `caso_id = 173`
 - `dose_perc = 10`
 
 usando como baseline os dados do treino com a mesma dose.
