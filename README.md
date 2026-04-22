@@ -111,8 +111,8 @@ As figuras a seguir apresentam resultados representativos para a **árvore brôn
 As variáveis dos histogramas **DTH-In** e **DTH-Out** apresentaram correlações positivas elevadas entre faixas de distância próximas, indicando redundância de informação e justificando o uso de **análise fatorial** como etapa de redução de dimensionalidade, como ilustrado nas **Figuras 1** e **2**.
 
 <p align="center">
-  <img src="results/figures/arvore_bronquica/corr_dthin.png" width="49%" alt="Figura 1. Matriz de correlação DTH-In para a árvore brônquica" />
-  <img src="results/figures/arvore_bronquica/corr_dthout.png" width="49%" alt="Figura 2. Matriz de correlação DTH-Out para a árvore brônquica" />
+  <img src="results/figures/corr_dthin.png" width="49%" alt="Figura 1. Matriz de correlação DTH-In para a árvore brônquica" />
+  <img src="results/figures/corr_dthout.png" width="49%" alt="Figura 2. Matriz de correlação DTH-Out para a árvore brônquica" />
 </p>
 
 <p align="center">
@@ -122,8 +122,8 @@ As variáveis dos histogramas **DTH-In** e **DTH-Out** apresentaram correlaçõe
 A análise fatorial mostrou adequação para os dados (**Bartlett p &lt; 0,001** em todos os órgãos). Para o **DTH-In**, foram retidos **três fatores** com rotação varimax, interpretados como **axial_adjacente**, **axial_media** e **axial_periferica**. Para o **DTH-Out**, foi retido **um fator**, interpretado como **long_adjacente**. A estrutura das cargas fatoriais, apresentada nas **Figuras 3** e **4**, sustenta essa interpretação espacial dos constructos.
 
 <p align="center">
-  <img src="results/figures/arvore_bronquica/loadings_dthin.png" width="49%" alt="Figura 3. Cargas fatoriais do DTH-In para a árvore brônquica" />
-  <img src="results/figures/arvore_bronquica/loadings_dthout.png" width="49%" alt="Figura 4. Cargas fatoriais do DTH-Out para a árvore brônquica" />
+  <img src="results/figures/loadings_dthin.png" width="49%" alt="Figura 3. Cargas fatoriais do DTH-In para a árvore brônquica" />
+  <img src="results/figures/loadings_dthout.png" width="49%" alt="Figura 4. Cargas fatoriais do DTH-Out para a árvore brônquica" />
 </p>
 
 <p align="center">
@@ -148,11 +148,11 @@ Na análise estratificada por faixa de dose, os maiores erros ocorreram em **0�
 A comparação entre curvas **DVH reais e preditas** mostrou boa concordância global, como exemplificado na **Figura 5** para o caso 173 do conjunto de teste.
 
 <p align="center">
-  <img src="results/figures/arvore_bronquica/dvh_caso_173.png" width="72%" alt="Figura 5. Comparação entre DVH real e predita para o caso 173" />
+  <img src="results/figures/dvh_caso_173.png" width="72%" alt="Figura 5. Comparação entre DVH real e predito para o caso 173" />
 </p>
 
 <p align="center">
-  <em>Figura 5. Comparação entre DVH real e predita para o caso 173 do conjunto de teste.</em>
+  <em>Figura 5. Comparação entre DVH real e predito para o caso 173 do conjunto de teste.</em>
 </p>
 
 De forma pontual, observaram-se pequenas inconsistências locais, como discretas violações de monotonicidade e valores ligeiramente negativos, sem comprometer a tendência geral das curvas.
@@ -162,7 +162,7 @@ De forma pontual, observaram-se pequenas inconsistências locais, como discretas
 A análise com **SHAP** reforçou a coerência física das predições. Na **Figura 6**, referente ao caso 173 no nível de dose de 10%, a predição é decomposta em contribuições individuais das variáveis explicativas, a partir do valor médio esperado do modelo até o valor final estimado.
 
 <p align="center">
-  <img src="results/figures/arvore_bronquica/shap_caso_173_dose_10.png" width="88%" alt="Figura 6. Explicabilidade local com SHAP para o caso 173 na dose de 10%" />
+  <img src="results/figures/shap_caso_173_dose_10.png" width="88%" alt="Figura 6. Explicabilidade local com SHAP para o caso 173 na dose de 10%" />
 </p>
 
 <p align="center">
