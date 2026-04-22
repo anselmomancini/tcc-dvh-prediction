@@ -62,7 +62,7 @@ Pipeline em Python para:
 - treinamento com XGBoost;
 - validação cruzada por grupo;
 - avaliação global e por faixa de dose;
-- comparação entre DVHs reais e preditas;
+- comparação entre DVHs reais e preditos;
 - interpretabilidade local com SHAP.
 
 ## Metodologia resumida
@@ -166,7 +166,7 @@ A análise com **SHAP** reforçou a coerência física das predições. Na **Fig
 </p>
 
 <p align="center">
-  <em>Figura 6. Explicabilidade local com SHAP para o caso 173 na dose de 10% À esquerda, o gráfico de distribuição normalizada que situa os valores das variáveis explicativas do caso (círculo preto) em relação à base de treino, com coloração correspondente aos valores SHAP no nível de dose analisado (10%). À direita, o gráfico waterfall decompõe a predição a partir do valor médio esperado do modelo para o nível de dose de 10%, E[f(X)] = 15,038, até o valor estimado, f(X) = 47,129.</em>
+  <em>Figura 6. Explicabilidade local com SHAP para o caso 173 na dose de 10%. À esquerda, o gráfico de distribuição normalizada que situa os valores das variáveis explicativas do caso (círculo preto) em relação à base de treino, com coloração correspondente aos valores SHAP no nível de dose analisado (10%). À direita, o gráfico waterfall decompõe a predição a partir do valor médio esperado do modelo para o nível de dose de 10%, E[f(X)] = 15,038, até o valor estimado, f(X) = 47,129.</em>
 </p>
 
 Ao longo das curvas DVH, observou-se uma transição no padrão explicativo: em **baixas doses**, a predição tende a ser mais influenciada por **axial_periferica** e **axial_media**; em **doses mais altas**, a contribuição se concentra progressivamente em **axial_adjacente**, refletindo a maior importância da proximidade imediata entre órgão e alvo. Em casos específicos, a variável **long_adjacente** também pode assumir papel relevante, indicando influência da relação espacial na região *out-of-field*.
@@ -177,7 +177,7 @@ Em conjunto, os resultados indicam que a combinação de descritores geométrico
 
 ## Dados disponibilizados
 
-Devido a restrições institucionais e éticas, os dados utilizados neste estudo — incluindo DVHs, DTHs e variáveis derivadas — não podem ser disponibilizados publicamente.
+Devido a restrições institucionais, os dados brutos utilizados neste estudo não podem ser disponibilizados publicamente.
 
 ## Tecnologias utilizadas
 
@@ -229,7 +229,7 @@ O pipeline em Python foi desenvolvido para gerar, entre outros artefatos:
 - escalonador;
 - objetos da análise fatorial;
 - metadados da execução;
-- gráficos de comparação entre DVHs reais e preditas;
+- gráficos de comparação entre DVHs reais e preditos;
 - gráficos de interpretabilidade com SHAP.
 
 ## Uso e citação
