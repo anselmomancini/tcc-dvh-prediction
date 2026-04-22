@@ -20,9 +20,19 @@ tcc-dvh-prediction/
 ├── CITATION.cff
 ├── .gitignore
 ├── requirements.txt
+├── results/
+│   └── figures/
+│       ├── corr_dthin_arvore_bronquica.png
+│       ├── corr_dthout_arvore_bronquica.png
+│       ├── loadings_dthin_arvore_bronquica.png
+│       ├── loadings_dthout_arvore_bronquica.png
+│       ├── dvh_caso_173.png
+│       └── shap_caso_173_dose_10.png
 ├── doseprofiles/
 ├── dataextractor/
 └── dvhprediction/
+    ├── inputs/
+    └── outputs/
 ```
 
 ## Visão geral dos módulos
@@ -92,13 +102,66 @@ De forma resumida, o projeto seguiu as etapas abaixo:
 9. avaliação global e estratificada por faixa de dose;
 10. análise de interpretabilidade local com SHAP.
 
+## Resultados e discussão
+
+As figuras abaixo ilustram resultados representativos para a **árvore brônquica**, utilizada aqui como exemplo visual do comportamento observado no estudo.
+
+### Correlação e redução de dimensionalidade
+
+As variáveis dos histogramas **DTH-In** e **DTH-Out** apresentaram correlações positivas elevadas entre faixas de distância próximas, indicando redundância de informação e justificando o uso de **análise fatorial** como etapa de redução de dimensionalidade.
+
+<p align="center">
+  <img src="results/figures/corr_dthin_arvore_bronquica.png" width="49%" alt="Matriz de correlação DTH-In para a árvore brônquica" />
+  <img src="results/figures/corr_dthout_arvore_bronquica.png" width="49%" alt="Matriz de correlação DTH-Out para a árvore brônquica" />
+</p>
+
+A análise fatorial mostrou adequação para os dados (**Bartlett p < 0,001** em todos os órgãos). Para o **DTH-In**, foram retidos **três fatores** com rotação varimax, interpretados como **axial_adjacente**, **axial_media** e **axial_periferica**. Para o **DTH-Out**, foi retido **um fator**, interpretado como **long_adjacente**. A variância explicada pelos fatores retidos variou de **86,3% a 97,5%** no DTH-In e de **80,8% a 97,9%** no DTH-Out.
+
+<p align="center">
+  <img src="results/figures/loadings_dthin_arvore_bronquica.png" width="49%" alt="Cargas fatoriais do DTH-In para a árvore brônquica" />
+  <img src="results/figures/loadings_dthout_arvore_bronquica.png" width="49%" alt="Cargas fatoriais do DTH-Out para a árvore brônquica" />
+</p>
+
+Esses resultados indicam que a estrutura original dos DTHs pôde ser representada de forma mais compacta e interpretável, com pequena perda de informação.
+
+### Desempenho preditivo do modelo
+
+O modelo baseado em **XGBoost** apresentou desempenho consistente para os quatro órgãos avaliados, com boa estabilidade entre conjunto de teste e validação cruzada.
+
+| Órgão | R² (teste) | MAE | RMSE | R² CV (média ± DP) |
+|---|---:|---:|---:|---:|
+| Árvore brônquica | 0.954 | 0.922 | 2.899 | 0.937 ± 0.020 |
+| Coração | 0.937 | 0.343 | 1.612 | 0.958 ± 0.011 |
+| Esôfago | 0.942 | 0.528 | 1.661 | 0.931 ± 0.009 |
+| Medula espinhal | 0.941 | 0.361 | 1.362 | 0.920 ± 0.030 |
+
+Na análise estratificada por faixa de dose, os maiores erros ocorreram em **0–20% da dose**, com **MAE entre 1.602 e 3.992** e **RMSE entre 3.162 e 6.603**. A partir de 20%, houve redução progressiva do erro, em linha com a menor variabilidade da resposta nas regiões de dose mais alta.
+
+A comparação entre curvas **DVH reais e preditas** mostrou boa concordância global, como no exemplo abaixo para o caso 173 do conjunto de teste.
+
+<p align="center">
+  <img src="results/figures/dvh_caso_173.png" width="72%" alt="Comparação entre DVH real e predita para o caso 173" />
+</p>
+
+De forma pontual, observaram-se pequenas inconsistências locais, como discretas violações de monotonicidade e valores ligeiramente negativos, sem comprometer a tendência geral das curvas.
+
+### Explicabilidade do modelo
+
+A análise com **SHAP** reforçou a coerência física das predições. No exemplo abaixo, para o **caso 173** no nível de dose de **10%**, a predição é decomposta em contribuições individuais das variáveis explicativas, a partir do valor médio esperado do modelo até o valor final estimado.
+
+<p align="center">
+  <img src="results/figures/shap_caso_173_dose_10.png" width="88%" alt="Explicabilidade local com SHAP para o caso 173 na dose de 10%" />
+</p>
+
+Ao longo das curvas DVH, observou-se uma transição no padrão explicativo: em **baixas doses**, a predição tende a ser mais influenciada por **axial_periferica** e **axial_media**; em **doses mais altas**, a contribuição se concentra progressivamente em **axial_adjacente**, refletindo a maior importância da proximidade imediata entre órgão e alvo. Em casos específicos, a variável **long_adjacente** também pode assumir papel relevante, indicando influência da relação espacial na região *out-of-field*.
+
+### Discussão breve
+
+Em conjunto, os resultados indicam que a combinação de descritores geométricos baseados em **DTH**, redução de dimensionalidade por **análise fatorial**, modelagem com **XGBoost** e interpretação por **SHAP** constitui uma abordagem eficaz e interpretável para predição de **DVH** em radioterapia pulmonar. Além do bom desempenho preditivo, o modelo mostrou comportamento compatível com a lógica espacial da distribuição de dose, o que reforça seu potencial de apoio ao planejamento e à avaliação radioterápica.
+
 ## Dados disponibilizados
 
-Este repositório disponibiliza apenas os arquivos utilizados no exemplo da **árvore brônquica**, presentes em:
-
-```text
-dvhprediction/inputs/
-```
+Devido a restrições institucionais e éticas, os dados utilizados neste estudo — incluindo DVHs, DTHs e variáveis derivadas — não podem ser disponibilizados publicamente.
 
 ## Tecnologias utilizadas
 
@@ -130,7 +193,7 @@ pip install -r requirements.txt
 
 ## Execução
 
-A execução do pipeline preditivo é realizada no módulo `dvhprediction`, utilizando os arquivos de entrada disponíveis na pasta `inputs/`.
+A execução do pipeline preditivo é realizada no módulo `dvhprediction`, utilizando os arquivos de entrada que devem estar na pasta `inputs/`.
 
 Exemplo:
 
@@ -160,10 +223,6 @@ Este repositório é disponibilizado publicamente para fins acadêmicos e aprese
 Se você for referenciar este material, utilize as informações disponíveis em `CITATION.cff`.
 
 Nenhuma licença open source está sendo concedida neste momento para reutilização, modificação ou redistribuição do código.
-
-## Observações
-
-- Os dados disponibilizados são limitados ao necessário para ilustrar o funcionamento do pipeline de predição de dvh.
 
 ## Autor
 
