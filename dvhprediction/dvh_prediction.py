@@ -441,7 +441,7 @@ def plot_dvh_pred(caso_id, test_long, features, model):
 #%% [16] Exemplo de curva
 # -------------------------------------------------------------------------------------------
 # Caso pertencente exclusivamente ao conjunto de teste.
-plot_dvh_pred(caso_id=119, test_long=test_long, features=FEATURES, model=model)
+plot_dvh_pred(caso_id=173, test_long=test_long, features=FEATURES, model=model)
 
 #%% [17] Explicabilidade (SHAP)
 # -------------------------------------------------------------------------------------------
@@ -541,7 +541,7 @@ def shap_pair_plot(case_df, model, feature_cols, df_full):
 #%% [18] Exemplo de explicabilidade
 # -------------------------------------------------------------------------------------------
 case_df = test_long.loc[
-    (test_long["caso_id"] == 119) &
+    (test_long["caso_id"] == 173) &
     (test_long["dose_perc"].round().astype(int) == 10)
 ]
 
