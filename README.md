@@ -78,7 +78,7 @@ As variáveis DTH foram submetidas à redução de dimensionalidade por análise
 
 ## Base de dados e escopo do estudo
 
-O estudo foi conduzido com dados retrospectivos de pacientes tratados com SBRT pulmonar, técnica VMAT.
+O estudo foi conduzido com dados retrospectivos de 350 pacientes tratados com SBRT pulmonar, técnica VMAT.
 
 Foram analisados quatro órgãos adjacentes ao alvo:
 
